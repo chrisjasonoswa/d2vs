@@ -144,47 +144,6 @@ def update_dashboard(request):
     todays_entries = Logs.objects.filter(timestamp__year=date_today.year, timestamp__month=date_today.month, timestamp__day=date_today.day).count()
 
     count = 0
-        
-    if notif.status == "alert":
-        notif.delete()
-        #Check Alarm
-        BASE_URL = "https://wp5611.api.infobip.com"
-        API_KEY = "3255914b2597342598175cbc157439fd-f56c061f-f513-4cc0-b683-a59c71673b79"
-
-        SENDER = "D2VS"
-        RECIPIENT = user.phone_number
-        MESSAGE_TEXT = "WARNING! 3 consecutive unsuccessful attempts DETECTED.\n\nSystem is DISABLED."
-
-        client_config = Configuration(
-                host= BASE_URL,
-                api_key={"APIKeyHeader": API_KEY},
-                api_key_prefix={"APIKeyHeader": "App"},
-            )
-
-        api_client = ApiClient(client_config)
-
-        sms_request = SmsAdvancedTextualRequest(
-                messages=[
-                    SmsTextualMessage(
-                        destinations=[
-                            SmsDestination(
-                                to=RECIPIENT,
-                            ),
-                        ],
-                        _from=SENDER,
-                        text=MESSAGE_TEXT,
-                    )
-                ])
-
-        api_instance = SendSmsApi(api_client)
-
-        try:
-            api_response: SmsResponse = api_instance.send_sms_message(sms_advanced_textual_request=sms_request)
-            print(api_response)
-        except ApiException as ex:
-            print("Error occurred while trying to send SMS message.")
-            print(ex)
-        database.child(f"user{user.id}").update({"system_status": "Disabled"})
     
     for password in password_list:
         if password.val() != 0:
@@ -264,6 +223,47 @@ def update_password(request):
 def add_logs(request, status, user_id):
     user = User.objects.get(id=user_id)
     notif = Logs.objects.create(logs_user=user, status=status)
+    
+    if notif.status == "alert":
+        notif.delete()
+        #Check Alarm
+        BASE_URL = "https://wp5611.api.infobip.com"
+        API_KEY = "3255914b2597342598175cbc157439fd-f56c061f-f513-4cc0-b683-a59c71673b79"
+
+        SENDER = "D2VS"
+        RECIPIENT = user.phone_number
+        MESSAGE_TEXT = "WARNING! 3 consecutive unsuccessful attempts DETECTED.\n\nSystem is DISABLED."
+
+        client_config = Configuration(
+                host= BASE_URL,
+                api_key={"APIKeyHeader": API_KEY},
+                api_key_prefix={"APIKeyHeader": "App"},
+            )
+
+        api_client = ApiClient(client_config)
+
+        sms_request = SmsAdvancedTextualRequest(
+                messages=[
+                    SmsTextualMessage(
+                        destinations=[
+                            SmsDestination(
+                                to=RECIPIENT,
+                            ),
+                        ],
+                        _from=SENDER,
+                        text=MESSAGE_TEXT,
+                    )
+                ])
+
+        api_instance = SendSmsApi(api_client)
+
+        try:
+            api_response: SmsResponse = api_instance.send_sms_message(sms_advanced_textual_request=sms_request)
+            print(api_response)
+        except ApiException as ex:
+            print("Error occurred while trying to send SMS message.")
+            print(ex)
+        database.child(f"user{user.id}").update({"system_status": "Disabled"})
 
     return HttpResponse("Log Added Successfully")
 
