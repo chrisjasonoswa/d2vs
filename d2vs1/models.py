@@ -5,7 +5,7 @@ from django.utils import timezone
 
 # Create your models here.
 class User(AbstractUser):
-    phone_number = models.CharField(blank=True, max_length=11)
+    phone_number = models.CharField(blank=True, max_length=12)
 
 class Logs(models.Model):
     logs_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_logs")
