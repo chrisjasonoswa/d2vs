@@ -186,6 +186,7 @@ def update_dashboard(request):
         except ApiException as ex:
             print("Error occurred while trying to send SMS message.")
             print(ex)
+        database.child(f"user{user.id}").update({"system_status": "Disabled"})
         
 
     
