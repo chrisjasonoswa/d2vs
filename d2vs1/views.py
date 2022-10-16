@@ -254,7 +254,7 @@ def update_password(request):
         login(request, user)
         data ={
             "successful": "true",
-            "password": user.password
+            "password": user.password,
         }
         print("Success")
         return JsonResponse(data)

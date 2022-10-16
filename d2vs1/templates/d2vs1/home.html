@@ -5,7 +5,7 @@
         &nbsp; &nbsp;<span id="user_header">{{ request.user.username }}</span>
     </div>
     <div class="col text-end d-flex justify-content-end align-items-center">
-        <i class='bx bx-bell me-3' ></i>
+        <a href="{% url 'logout' %}"><i class='bx bx-log-out-circle me-3'></i></a>
     </div>
     
 </div>
@@ -44,10 +44,6 @@
                             <label for="floatingInputGroup3">Phone Number</label>
                     </div>
                     <span class="input-group-text"><button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#updatephonenumber" >Update</button></span>
-                </div>
-
-                <div class="text-end">
-                    <a href="{% url 'logout' %}"><button class="btn btn-primary" type="submit">Logout</button></a>
                 </div>
                 
             </div>
@@ -248,16 +244,15 @@
                     var mssg =  '<div class="alert alert-success" role="alert">Password Updated</div>';
                     let password = document.querySelector("#floatingInputGroup3");
                     password.value = data.password;
+                    console.log("Valid");
                 }
                 else{
                     var mssg =  '<div class="alert alert-danger" role="alert">Passwords did not Match</div>';
+                    console.log("Invalid");
                 }
                 $("#updatepassword").modal('hide');
-
-                let new_password_input = document.getElementById("#new_password_input");
-                let confirmation_input = document.getElementById("#confirmation_input");
-                new_password_input.value = "";
-                confirmation_input.value = "";
+                $('#new_password_input').val("");
+                $('#confirmation_input').val("");
                 console.log("Test");
                 let home_mssg = document.querySelector("#home-mssg");
                 home_mssg.innerHTML = mssg;
