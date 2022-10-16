@@ -1,0 +1,332 @@
+{% load static %}
+<div class="row row-cols-2 mb-2 mt-2">
+    <div class="col greetings  d-flex justify-content-start align-items-center">
+        <a data-bs-toggle="modal" href="#profileModal" role="button" ><img class="img-fluid" id="user-profile" src="{% static 'd2vs1/images/default_user_profile.png' %}"></a>
+        &nbsp; &nbsp;<span id="user_header">{{ request.user.username }}</span>
+    </div>
+    <div class="col text-end d-flex justify-content-end align-items-center">
+        <i class='bx bx-bell me-3' ></i>
+    </div>
+    
+</div>
+
+<!--Profile Modal-->
+<div class="modal fade" id="profileModal" aria-hidden="true" aria-labelledby="#{{ key }}ModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <img class="img-fluid" src="{%static 'd2vs1/images/logo.png'%}" id="logo">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            
+            <div class="modal-body">
+                <!--Username-->
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input id="username_details" name="username" type="text" class="form-control" placeholder="Username" value="{{ user.username }}" readonly>  
+                            <label for="username_details">Username</label>
+                        </div>
+                        <span class="input-group-text"><button class="btn btn-outline-secondary" type="button"  data-bs-toggle="modal" data-bs-target="#updateusername" >Update</button></span>
+                    </div>
+
+                <div class="input-group mb-3">
+                    <div class="form-floating">
+                        <input name="password" id="floatingInputGroup3" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="button-addon4" value="{{ user.password }}" readonly>
+                        <label for="floatingInputGroup3">Password</label>
+                    </div>
+                    <span class="input-group-text"><button class="btn btn-outline-secondary" type="button" id="button-addon4" data-bs-toggle="modal" data-bs-target="#updatepassword" >Update</button></span>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="form-floating">
+                            <input name="phone_number" id="floatingInputGroup4" type="text" class="form-control" placeholder="Phone Number" value="{{ phone_number }}" readonly>
+                            <label for="floatingInputGroup3">Phone Number</label>
+                    </div>
+                    <span class="input-group-text"><button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#updatephonenumber" >Update</button></span>
+                </div>
+
+                <div class="text-end">
+                    <a href="{% url 'logout' %}"><button class="btn btn-primary" type="submit">Logout</button></a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Login Modal-->
+
+<!--Pop-up Update Phone Number Form-->
+<div class="modal fade" id="updatephonenumber" tabindex="-1" aria-labelledby="updatephonenumberModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updatephonenumberModal">Update Phone Number</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="updatephonenumberform">
+                {% csrf_token %}
+                <div class="modal-body">
+                      
+                    <div class="input-group">
+                        <span class="input-group-text" id="phonenumber_text_addon">+63</span>
+                        <input id="phonenumber_text" name="new_phonenumber" type="number" class="form-control" maxlength="10" minlength="10" placeholder="New Phone Number" required >
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--End Update Phone Number Form-->
+
+<!--Pop-up Update Username Form-->
+<div class="modal fade" id="updateusername" tabindex="-1" aria-labelledby="updateusernameModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateusernameModal">Update Username</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="updateusernameform">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div>
+                        <input id="username_text" name="new_username" type="text" class="form-control" placeholder="New Username" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--End Update Username Form-->
+
+<!--Pop-up Update Password Form-->
+<div class="modal fade" id="updatepassword" tabindex="-1" aria-labelledby="updatepasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updatepasswordModalLabel">Update Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="updatepasswordform" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div>
+                        <input id="new_password_input" name="new_password" type="password" class="form-control" placeholder="New Password" required>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <input id="confirmation_input" name="confirmation" type="password" class="form-control" placeholder="Confirm Password" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input class="btn btn-primary" type="submit" value="Update">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    //Update Phone Number
+    $('#updatephonenumber').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            method:'GET',
+            url:"{% url 'update_phonenumber' %}",
+            data:{
+                phonenumber:$('#phonenumber_text').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            }, 
+            success: function(data) {
+
+                let phonenumber_disp = document.querySelector("#floatingInputGroup4");
+                phonenumber_disp.value = "+" + data.phonenumber;
+
+                $("#updatephonenumber").modal('hide');
+
+                let phonenumber_text = document.querySelector("#phonenumber_text");
+                phonenumber_text.value = "";
+
+                let home_mssg = document.querySelector("#home-mssg");
+                home_mssg.innerHTML = '<div class="alert alert-success" role="alert">Phone Number Updated</div>';
+                $(".alert").delay(3000).slideUp(200, function() {
+                    $(this).alert('close');
+                });
+            },
+        });              
+    });
+
+    //Update Current Dashboard Status
+    function update_dashboard(){
+            $.ajax({
+            url: "{% url 'update_dashboard' %}",
+            type: 'GET',
+            success: function(data){
+                let system_status = document.querySelector("#dashboard-system-status");
+                system_status.innerHTML = data.system_status;
+
+                let door_status = document.querySelector("#dashboard-door-status"); 
+                door_status.innerHTML = data.door_status;
+
+                let password_count = document.querySelector("#password-count"); 
+                password_count.innerHTML = data.count;
+
+                let todays_entries = document.querySelector("#dashboard-todays-entries"); 
+                todays_entries.innerHTML = data.todays_entries;
+            }
+            });
+        }
+
+    //Update when the system status is changed in the firebase when 3 unsuccessfull attempts happen
+    $(document).ready(function(){
+        setInterval(update_dashboard, 2000);
+    });
+
+    //Update Username Submit
+    $('#updateusernameform').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            method:'GET',
+            url:"{% url 'update_username' %}",
+            data:{
+                username:$('#username_text').val(),
+            }, 
+            success: function(data) {
+                let user_header = document.querySelector("#user_header");
+                user_header.innerHTML = data.username;
+
+                let user_input = document.querySelector("#username_details");
+                user_input.value = data.username;
+
+                $("#updateusername").modal('hide');
+
+                let user_input_form = document.querySelector("#username_text");
+                user_input_form.value = "";
+
+                let home_mssg = document.querySelector("#home-mssg");
+                home_mssg.innerHTML = '<div class="alert alert-success" role="alert">Username Updated</div>';
+                $(".alert").delay(3000).slideUp(200, function() {
+                    $(this).alert('close');
+                });
+            },
+        });              
+    });
+
+
+
+    //Update Password Submit
+    $('#updatepasswordform').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            method:'GET',
+            url:"{% url 'update_password' %}",
+            data:{
+                new_password:$('#new_password_input').val(),
+                confirmation:$('#confirmation_input').val(),
+            }, 
+            success: function(data) {
+                if (data.successful == "true"){
+                    var mssg =  '<div class="alert alert-success" role="alert">Password Updated</div>';
+                    let password = document.querySelector("#floatingInputGroup3");
+                    password.value = data.password;
+                }
+                else{
+                    var mssg =  '<div class="alert alert-danger" role="alert">Passwords did not Match</div>';
+                }
+                $("#updatepassword").modal('hide');
+
+                let new_password_input = document.getElementById("#new_password_input");
+                let confirmation_input = document.getElementById("#confirmation_input");
+                new_password_input.value = "";
+                confirmation_input.value = "";
+                console.log("Test");
+                let home_mssg = document.querySelector("#home-mssg");
+                home_mssg.innerHTML = mssg;
+                $(".alert").delay(3000).slideUp(200, function() {
+                    $(this).alert('close');
+                });
+            },
+        });              
+    });
+
+</script>
+    
+
+
+
+
+<hr>
+<div id="home-mssg">
+</div>
+
+<h5 class="mt-4 mb-3 page-title">
+    Dashboard
+</h5>
+
+<div class="row row-cols-1 row-cols-md-2 p-2 dashboard-panel m-0 rounded-4">
+    <div class="col w-50 m-0 p-2">
+        <div class="card dashboard-card rounded-4 h-100 p-3 text-center">
+            <i class='bx bx-shield-quarter fa-2x bx-green'></i>
+            <span class="card-title-dashboard" id="dashboard-system-status" >{{ system_status }}</span>
+            <p class="card-text cardtxtstatus">System Status</p>
+        </div>
+    </div>
+
+    <div class="col w-50 m-0 p-2">
+        <div class="card dashboard-card rounded-4 h-100 p-3 text-center">
+            <i class='bx bxs-door-open fa-2x bx-orange'></i>
+            <span class="card-title-dashboard" id="dashboard-door-status">{{ door_status }}</span>
+            <p class="card-text cardtxtstatus">Door Status</p>
+        </div>
+    </div>
+
+    <div class="col w-50 m-0 p-2 ">
+        <div class="card dashboard-card rounded-4 h-100 p-3 text-center">
+            <i class='bx bxs-user-badge bx-red fa-2x' ></i>
+            <span class="card-title-dashboard" id="dashboard-todays-entries">{{ todays_entries }}</span>
+            <p class="card-text cardtxtstatus">Today's Entries</p>
+        </div>
+    </div>
+
+    <div class="col w-50 m-0 p-2">
+        <div class="card dashboard-card rounded-4 h-100 p-3 text-center">
+            <i class='bx bx-key fa-2x bx-yellow' ></i>
+            <span class="card-title-dashboard" id="password-count">{{ count }}</span>
+            <p class="card-text cardtxtstatus" >Passwords</p>
+        </div>
+    </div> 
+</div> 
+
+<h6 class="mt-4  page-title text-muted">
+    Recent Entries
+</h6>
+
+<div class="card system-card rounded-5"
+        hx-get="{% url 'get_recent_logs' %}"
+        hx-trigger="load, every 2s"
+        hx-target="#card-recent-logs"
+        hx-swap="innerHTML"> 
+    <div class="card-body rounded-5" id="card-recent-logs">
+
+    </div>
+</div>
+<br>

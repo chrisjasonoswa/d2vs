@@ -1,0 +1,51 @@
+{% load static %}
+<div class="row row-cols-2 mb-2 mt-2">
+    <div class="col">
+        <h5 class="mt-2 mb-3 page-title">
+            Logs
+        </h5>
+    </div>
+    <div class="col text-end d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-danger pt-1 pb-0" id="clear-bttn">Clear</button>
+    </div>
+    <script>
+        $('#clear-bttn').on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                method:'GET',
+                url:"{% url 'clear_logs' %}",
+                success: function(data){
+                    let clear_div = document.querySelector("#clear-mssg");
+                    
+                },
+            });              
+        });
+    </script>
+</div>
+
+<div id="clear-mssg">
+
+</div>
+<div class="card system-card rounded-5"
+        hx-get="{% url 'get_logs' %}"
+        hx-trigger="load, every 2s"
+        hx-target="#card-all-logs"
+        hx-swap="innerHTML"> 
+    <div class="card-body rounded-5">
+        <div class="table-responsive">
+            <table id="table-all-logs" class="table mb-0" style="font-size: 0.95em !important;">
+                <thead>
+                    <tr style="background-color: #e9f2fd; color: #416285; font-size: 0.93em;">
+                        <th class="col-md-6" scope="col">TIMESTAMP</th>
+                        <th class="col-md-2" scope="col">STATUS</th>
+                    </tr>
+                </thead>
+
+                <tbody id="card-all-logs">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>

@@ -1,0 +1,259 @@
+body{
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #f2f8feff !important;
+    
+}
+
+.overflow{
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 4.5em;
+}
+
+
+  
+
+.content-body{
+    min-height: 100vh;
+} 
+.carousel{
+    background-color: white ;
+    height: 100vh;
+}
+.carousel-item{
+    height: inherit !important;
+}
+.carousel-indicators button {
+    height: 10px !important;
+    width: 10px !important;
+    margin: 0 10px !important;
+    border-radius: 100%;
+    background-color: #2f83f9ff !important;
+}
+.page-pic{
+    width: 60%;
+    object-fit: contain !important;
+}
+.img-content{
+    flex-shrink: 5; 
+}
+#logo{
+    max-height: 45px;
+    width: auto;
+}
+
+.carousel-title{
+    font-size: 2.7vh;
+    font-weight: 600;
+    color: #5479f7ff;
+}
+
+.carousel-description{
+    font-size: 2.1vh;
+   color: rgba(0, 0, 0, 0.7);
+}
+div.text-desc{
+    line-height: 500% !important;
+}
+#carouselExampleDark{
+    overflow: auto;
+}
+
+.carousel-indic{
+    max-height: 30px !important;   
+}
+
+.btn-blue{
+    background-color: #2f83f9ff !important;
+}
+
+#user-profile{
+    max-height: 3em ;
+}
+
+.nav-cols{
+    padding-top: 1rem;
+    padding-bottom: 0.7rem;
+}
+
+.bx-nav{
+    font-size: x-large;
+    color: #4e4e4e;
+    padding: 0.5em;
+    border-radius: 0.8em;
+    -webkit-transition: background-color 0.4s ease-out;
+    -moz-transition: background-color 0.4s ease-out;
+    -o-transition: background-color 0.4s ease-out;
+    transition: background-color 0.4s ease-out;
+}
+
+nav{
+    box-shadow: 0px 0 25px rgba(0, 0, 0, 0.10);
+    background-color: #f2f8feff;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+}
+.card{
+    border-width: 0px !important;
+}
+
+
+.bttn-col{
+    min-width: 93px !important;
+}
+
+.page-title{
+    font-weight: 600;
+    color: black;
+}
+
+.status, #system-status, #door_status{
+    font-size: 0.9em !important;
+}
+.status{
+    opacity: 0.4 !important;
+    color: black;
+}
+
+.bg-blue{
+    background-color: #2f83f9ff !important;
+}
+
+.bx-passcode{
+    font-size: 1.2em;
+    color: white !important;
+}
+
+.btn-green{
+    background-color: rgb(110, 216, 189) !important;
+    color: white !important;
+}
+
+.bx-reg-green{
+    color: #6ed8bd !important;
+}
+.card-title{
+    font-size: 1.1em !important;
+    font-weight: 600;
+    color: black;
+}
+
+.system-card, .door_ctrl_card{
+    background-color: white !important;
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.09);
+}
+
+
+.system-controls{
+    background-color: #2f83f9ff !important;
+    color: white;
+}
+
+.registration-controls{
+    background-color: #6ed8bd !important;
+    color: white;
+}
+
+.controls{
+    font-size: 1em;
+}
+.password-row{
+    background-color: rgb(234, 230, 255) !important;
+    color: black;
+    margin-bottom: 0.8em;
+}
+.bx-controls{
+    font-size: 1.5em;
+}
+
+.bx-violet{
+    color: rgb(165, 143, 255);
+}
+
+.bx-orange{
+    color: rgb(255, 165, 134);
+}
+.bx-blue{
+    color: #2f83f9ff;
+}
+.bx-green{
+    color: rgb(162, 226, 189);
+}
+
+.bx-yellow{
+    color: #f9d98dff;
+}
+
+.btn-danger{
+    background-color: rgb(255, 81, 119) !important;
+    border-color: rgb(255, 81, 119) !important;
+}
+.btn-primary{
+    background-color: #2f83f9ff !important;
+    font-size: 0.95em !important;
+    color: white !important;
+    padding: 0.3em 0.5em 0.3em !important;
+}
+.btn-white{
+    background-color: white !important;
+    color: #2f83f9ff !important;
+}
+#system-status, #door_status{
+    color: white;
+    opacity: 0.8;
+};
+
+.name{
+    font-weight: 600 !important;
+    color: #2f83f9ff !important;
+}
+
+.bx-bell{
+    color: #2f83f9ff !important;
+    font-size: 1.8em;
+}
+
+.greetings{
+    font-weight: 600;
+    font-size: 1em;
+    color: rgb(36, 107, 207);
+}
+
+.system-color{
+    background-color: #2f83f9ff;
+    color: white !important;
+}
+
+.dashboard-panel{
+    background-image: linear-gradient(135deg, #2468c7, rgb(45, 172, 140));
+    background-color: #2c7df0;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card{
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    color: white !important;
+}
+
+.card-title-dashboard{
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing:1.5px;
+}
+.cardtxtstatus{
+    opacity: 0.6;
+    font-size: 0.84em;
+}
+
+.bx-red{
+    color:  rgb(255, 172, 190)
+}
+
+span#passcode-order-txt{
+    font-size: 0.95em;
+}
+
+#table-all-logs{
+    font-size: 0.3em !important;
+}
