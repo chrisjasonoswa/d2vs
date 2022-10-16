@@ -232,7 +232,7 @@ def add_logs(request, status, user_id):
 
         SENDER = "D2VS"
         RECIPIENT = user.phone_number
-        MESSAGE_TEXT = "WARNING!\n\n 3 consecutive unsuccessful attempts DETECTED.\n\nSystem is DISABLED."
+        MESSAGE_TEXT = "WARNING!\n\n3 consecutive unsuccessful attempts DETECTED.\n\nSystem is DISABLED."
 
         client_config = Configuration(
                 host= BASE_URL,
