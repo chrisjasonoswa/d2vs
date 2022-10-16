@@ -223,7 +223,7 @@ def update_password(request):
 def add_logs(request, status, user_id):
     user = User.objects.get(id=user_id)
     notif = Logs.objects.create(logs_user=user, status=status)
-    
+
     if notif.status == "alert":
         notif.delete()
         #Check Alarm
@@ -232,7 +232,7 @@ def add_logs(request, status, user_id):
 
         SENDER = "D2VS"
         RECIPIENT = user.phone_number
-        MESSAGE_TEXT = "WARNING! 3 consecutive unsuccessful attempts DETECTED.\n\nSystem is DISABLED."
+        MESSAGE_TEXT = "WARNING!\n\n 3 consecutive unsuccessful attempts DETECTED.\n\nSystem is DISABLED."
 
         client_config = Configuration(
                 host= BASE_URL,
