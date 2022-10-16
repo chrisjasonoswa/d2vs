@@ -158,7 +158,7 @@ nav{
     font-size: 1em;
 }
 .password-row{
-    background-color: rgb(234, 230, 255) !important;
+    background-color: rgb(217, 210, 255) !important;
     color: black;
     margin-bottom: 0.8em;
 }
@@ -168,6 +168,10 @@ nav{
 
 .bx-violet{
     color: rgb(165, 143, 255);
+}
+
+.bg-lightviolet{
+    background-color: rgb(84, 67, 153) !important;
 }
 
 .bx-orange{

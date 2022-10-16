@@ -351,11 +351,8 @@ def register_knock(request):
     print("Hey")
 
     database.child(f"user{user.id}").update({"registration": "true"})
-
-    time.sleep(6)
-    database.child(f"user{user.id}").update({"registration": "false"})
     data ={
-        "mssg": "Knock Registration Ended",
+        "mssg": "Knock Registration Activated",
     }
     return JsonResponse(data)
 

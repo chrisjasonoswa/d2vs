@@ -10,7 +10,7 @@
         <!-- Door Lock Authentication -->
         <div class="card system-controls p-3 rounded-4">
             <div class="row row-cols-1 row-cols-md-2">
-                <div class="col-8 d-flex align-items-center ">
+                <div class="col-9">
                     <div class="row row-cols-1">
                         <div class="col">
                             <span class="controls">System Authentication</span>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-end bttn-col">
+                <div class="col-3 text-end bttn-col">
                     <button type="button" class="btn btn-primary" id="bttn-system-control">{{ system_control }}</button>
                 </div>
                 <script type="text/javascript">
@@ -68,8 +68,8 @@
 
         <!-- Manual Open  -->
         <div class="card system-controls p-3 mt-4 rounded-4">
-            <div class="row row-cols-2 ">
-                <div class="col-8 d-flex align-items-center">
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col-9">
                     <div class="row row-cols-1">
                         <div class="col">
                             <span class="controls">Manual Door Control</span>
@@ -79,7 +79,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-end bttn-col">
+                
+                <div class="col-3 text-end bttn-col">
                     <button type="button" class="btn btn-primary" id="bttn-manual-ctrl">{{ manual_ctrl }}</button>
                     <script type="text/javascript">
                             //Button Click
@@ -112,13 +113,13 @@
 
     <!-- Door Knock Register  -->
     <div class="card registration-controls p-3 rounded-4">
-        <div class="row row-cols-2 ">
-            <div class="col-8 d-flex align-items-center">
+        <div class="row row-cols-2">
+            <div class="col d-flex align-items-center">
                 <div class="row row-cols-1">
-                    <span class="controls">Door Knock Registraion</span> 
+                    <span class="controls">Door Knock Registration</span> 
                 </div>
             </div>
-            <div class="col-4 text-end bttn-col">
+            <div class="col text-end bttn-col">
                 <button type="button" class="btn btn-primary " id="registerbttn" style="background-color: #6ed8bd !important; border-color: #3aad90 ;">Register</button>
                 <script>
                     $('#registerbttn').click(function(){
@@ -153,7 +154,11 @@
     {% for pass in passwords %}
         {% for key, value in pass.items %}
         <!-- Password Control -->
-        <div class="card p-2 password-row rounded-4 ">
+        {% if value == 0 %}
+            <div id="card-row-{{ key }}"class="card p-2 password-row rounded-4" style="opacity: 0.65;">
+        {% else %}
+            <div id="card-row-{{ key }}" class="card p-2 password-row rounded-4" >
+        {% endif %}
             <div class="row row-cols-2 g-2 w-100">
                 <div class="col-8 d-flex align-items-center">
                     <button type="button" class="btn btn-primary p-1 d-flex align-items-center"><i class='bx bxs-lock-alt bx-passcode'></i></span></button>&nbsp;<span id="passcode-order-txt">{{ key }} Passcode</span>                 
@@ -200,6 +205,8 @@
                             success: function(data){
                                 let password = document.querySelector("#"+ data.key + "-passcode");
                                 password.value = data.password;
+                                
+                                $("#card-row-{{ key }}").css('opacity', '0.65');
 
                                 let error_div = document.querySelector("#mssg-div");
                                 error_div.innerHTML = '<div class="alert alert-primary" role="alert">' + data.key +' Passcode Cleared</div>';
@@ -224,6 +231,8 @@
                             let password = document.querySelector("#"+ data.order + "-passcode");
                             password.value = data.password;
                             $("#" + data.order + "Modal").modal('hide');
+
+                            $("#card-row-{{ key }}").css('opacity', '1');
 
                             let error_div = document.querySelector("#mssg-div");
                             error_div.innerHTML = '<div class="alert alert-success" role="alert">' + data.order +' Passcode Saved</div>';
